@@ -432,9 +432,6 @@ Each agent has a configuration defining:
 
 > :warning: the absolute value of a `continuous` property must be less than 10<sup>20</sup>.
 
-A base type property can be defined as *optional* if its value is likely to be unknown at some point in time and that it is to be considered as a normal behavior, and not as a missing property. You can achieve that by adding `is_optional: true` to the property definition in your configuration.
-
-> :warning: An optional property cannot be set as being an output of the agent.
 
 Here is a simple example of configuration :
 ```json
@@ -444,8 +441,7 @@ Here is a simple example of configuration :
       "type": "enum"
     },
     "temperature": {
-      "type": "continuous",
-      "is_optional": true
+      "type": "continuous"
     },
     "lightbulbState": {
       "type": "enum"
@@ -526,7 +522,7 @@ Here is a simple example of configuration :
 
 ##### Examples
 
-Let's take a look at the following configuration. It is designed to model the **color** of a lightbulb (the `lightbulbColor` property, defined as an output) depending on the **outside light intensity** (the `lightIntensity` property), the **TV status** (the `TVactivated` property) the **time of the day** (the `time` property) and the **day of the week** (the `day` property). Since `TVactivated` doesn't make any sense if the TV isn't here, we also specify this property as `is_optional: true`.
+Let's take a look at the following configuration. It is designed to model the **color** of a lightbulb (the `lightbulbColor` property, defined as an output) depending on the **outside light intensity** (the `lightIntensity` property), the **TV status** (the `TVactivated` property) the **time of the day** (the `time` property) and the **day of the week** (the `day` property).
 
 `day` and `time` values will be generated automatically, hence the need for
 `timezone`, the current Time Zone, to compute their value from given
@@ -548,8 +544,7 @@ the decision model.
       "type": "continuous"
     },
     "TVactivated": {
-      "type": "boolean",
-      "is_optional": true
+      "type": "boolean"
     },
     "time": {
       "type": "time_of_day"
